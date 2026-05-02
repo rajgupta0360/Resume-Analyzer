@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // const API_BASE_URL = 'http://localhost:3125/api'; // Change this to your backend URL
-const API_BASE_URL = `${import.meta.env.API_BASE_URL}` || 'http://localhost:3125/api';
+const API_BASE_URL = `${import.meta.env.VITE_API_URL}` || 'http://localhost:3125/api';
+console.log("API_BASE_URL: ", API_BASE_URL);
 export async function registerUser(email, password, username) {
     try {
         const response = await axios.post(`${API_BASE_URL}/auth/register`, { email, password, username }, {
