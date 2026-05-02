@@ -15,4 +15,11 @@ app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/interview", interviewRouter);
 
+app.get("/", (req, res) => {
+    res.send({
+        activeStatus: true,
+        error: false
+    });
+});
+
 module.exports = app;
