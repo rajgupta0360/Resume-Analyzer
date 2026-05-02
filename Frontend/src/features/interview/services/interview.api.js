@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:3125/api/interview'; // Change this to your backend URL
+// const API_BASE_URL = 'http://localhost:3125/api/interview'; // Change this to your backend URL
+
+const API_BASE_URL = `${import.meta.env.API_BASE_URL}interview` || 'http://localhost:3125/api/interview';
 
 export const generateInterviewReport = async ({jobDescription,  selfDescription, resumeFile}) => {
     const formData = new FormData();
