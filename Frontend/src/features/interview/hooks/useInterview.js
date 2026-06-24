@@ -17,14 +17,14 @@ export const useInterview = () => {
         let response = null;
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile });
-            console.log("useInterview hook generateInterviewReport", response);
+            console.log("useInterview hook generateInterviewReport", response.report);
             setReport(response.interviewReport);
         } catch (error) {
             console.error("Error in useInterview hook:", error);
         } finally {
             setLoading(false);
         }
-        return response.interviewReport;
+        return response.report;
     }
 
     const getReportById = async (interviewId) => {

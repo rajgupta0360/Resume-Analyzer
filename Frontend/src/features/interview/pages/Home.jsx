@@ -210,6 +210,7 @@ const Home = () => {
         }
         const resumeFile = selectedFile || resumeInputRef.current.files[0]
         const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+        console.log("Generated Report",data);
         navigate(`/interview/${data._id}`)
     }
 

@@ -1,22 +1,23 @@
 import axios from "axios";
 
-// const API_BASE_URL = 'http://localhost:3125/api/interview'; // Change this to your backend URL
+const API_BASE_URL = import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/interview`
+    : 'http://localhost:3125/api/interview';
 
-const API_BASE_URL = `${import.meta.env.VITE_API_URL}/interview` || 'http://localhost:3125/api/interview';
-
-export const generateInterviewReport = async ({jobDescription,  selfDescription, resumeFile}) => {
+export const generateInterviewReport = async ({ jobDescription, selfDescription, resumeFile }) => {
     const formData = new FormData();
     formData.append('jobDescription', jobDescription);
     formData.append('selfDescription', selfDescription);
     formData.append('resume', resumeFile);
 
     const response = await axios.post(`${API_BASE_URL}/generate-interview-report`, formData, {
-        headers:{
+        headers: {
             'Content-Type': 'multipart/form-data'
-        }
-    }, {
+        },
         withCredentials: true
     });
+
+    return response.data;
 }
 
 export const getInterviewReportById = async (interviewId) => {
